@@ -1,3 +1,4 @@
+@compra_passagem
   # descrição da funcionalidade:
 Feature: Compra de passagem aerea
   # cenários de teste E2E - end to end

@@ -8,6 +8,12 @@ from selenium.webdriver.support.select import Select
 
 # context = variavel global q se utiliza pra comunicar os dados entre os módulos do behave
 
+#método executado antes da feature para chamar os passos seguintes
+def before_feature(context, feature):
+    if 'compra_passagem' in feature.tag:
+        context.execute_steps(
+            #podem ser incluídas outras ações ...
+        )
 @given(u'que acesso o site Blazedemo')
 def step_impl(context):
     context.driver.get('https://www.blazedemo.com/')
@@ -29,18 +35,18 @@ def step_impl(context):
 def step_impl(context):
     dropdown_to = context.driver.find_element(By.NAME, 'toPort')
     to = Select(dropdown_to).select_by_value('Rome')
-
     print('Passo 3 - Selecionou a cidade de destino')
 
 
 @when(u'clico no botao "Find Flights"')
 def step_impl(context):
     context.driver.find_element(By.CSS_SELECTOR, 'body > div.container > form > div > input').click()
-    time.sleep(4)
     print('Passo 4 - Apertou o botão Find Flights')
 
 @then(u'sou direcionado para a pagina de selecao de voos')
 def step_impl(context):
+    titulo = context.driver.find_element(By.CSS_SELECTOR, 'body > div.container')
+    assert titulo.text == 'Flights from São Paolo to Buenos Aires: '
     print('Passo 5 - Foi direcionado para a página de seleção de voos')
 
 @when(u'seleciono o primeiro voo')
