@@ -19,7 +19,7 @@ def before_feature(context, feature):
 def step_impl(context):
     context.driver.get('https://www.blazedemo.com/')
     print('Passo 1 - Acessou o site Blazedemo')
-''''''
+
 @when(u'seleciono a cidade "Sao Paolo" na cidade de origem')
 def step_impl(context):
     #Mapear o dropdown (combo)
@@ -55,7 +55,7 @@ def step_impl(context):
 
 @then(u'sou direcionado para a pagina de pagamento')
 def step_impl(context):
-    assert context.driver.find_element(By.XPATH, "//h2[contains(text(),'Your flight from TLV to SFO has been reserved.')]")
+    assert context.driver.find_element(By.XPATH, "//p[contains(text(),'Please submit the form below to purchase the fligh')]")
     print('Passo 6 - Foi direcionado para a página de pagamento')
 
 @when(u'preencho os dados para pagamento')
@@ -83,15 +83,15 @@ def step_impl(context):
     assert context.driver.find_element(By.XPATH, "//h1[contains(text(),'Thank you for your purchase today!')]")
     print('Passo 9 - Foi direcionado a pagina de confirmação de compra')
 
-@when(u'seleciono de "Sao Paolo" para "Rome"')
-def step_impl(context):
+@when(u'seleciono de "{origem}" para "{destino}"')
+def step_impl(context, origem, destino):
 
     dropdown_from = context.driver.find_element(By.NAME, 'fromPort')
     objeto_origem = Select(dropdown_from)
-    objeto_origem.select_by_value('São Paolo')
+    objeto_origem.select_by_value(origem)
 
     dropdown_to = context.driver.find_element(By.NAME, 'toPort')
-    Select(dropdown_to).select_by_value('Rome')
+    Select(dropdown_to).select_by_value(destino)
 
     context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-primary').click()
 
