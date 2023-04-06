@@ -24,4 +24,6 @@ def step_impl(context):
 @then(u'vejo a mensagem de confirmacao')
 #o site atualmente está com erro de Page Expired
 def step_impl(context):
-    assert context.driver.find_element(By.XPATH, "//div[contains(text(),'Page Expired')]")
+    #assert context.driver.find_element(By.XPATH, "//div[contains(text(),'Page Expired')]")
+    assert context.driver.find_element(By.CLASS_NAME, 'code').text == '419'
+    assert context.driver.find_element(By.CLASS_NAME, 'message').text == 'Page Expired'
