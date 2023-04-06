@@ -82,7 +82,7 @@ def step_impl(context):
     assert context.driver.find_element(By.XPATH, "//h1[contains(text(),'Thank you for your purchase today!')]")
     print('Passo 9 - Foi direcionado a pagina de confirmação de compra')
 
-@when(u'seleciono de "{origem}" para "{destino}"')
+@when(u'seleciono de "Sao Paolo" para "Rome"')
 def step_impl(context):
 
     dropdown_from = context.driver.find_element(By.NAME, 'fromPort')
