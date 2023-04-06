@@ -2,6 +2,7 @@
   # descrição da funcionalidade:
 Feature: Compra de passagem aerea
   # cenários de teste E2E - end to end
+  # para cada feature temos scenarios (test scenarios)
   Scenario: Trecho de Sao Paulo a Roma
     Given que acesso o site Blazedemo
     When seleciono a cidade "Sao Paolo" na cidade de origem
@@ -23,3 +24,21 @@ Feature: Compra de passagem aerea
     When preencho os dados para pagamento
     And clico no botao "Purchase Flight"
     Then sou direcionado a pagina de confirmacao
+
+  Scenario Outline: De origem a destino
+    Given que acesso o site Blazedemo
+    When seleciono de "<origem>" para "<destino>"
+    Then sou direcionado para a pagina de selecao de voos
+    When seleciono o primeiro voo
+    Then sou direcionado para a pagina de pagamento
+    When preencho os dados para pagamento
+    And clico no botao "Purchase Flight"
+    Then sou direcionado a pagina de confirmacao
+
+    Examples:
+      | origem       | destino      |
+      | Philadelphia | Buenos Aires |
+      | Mexico City  | Cairo        |
+      | Paris        | London       |
+      | San Diego    | Berlin       |
+      | Portland     | New York     |
