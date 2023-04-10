@@ -57,7 +57,8 @@ def step_impl(context):
 
 @then(u'sou direcionado para a pagina de pagamento')
 def step_impl(context):
-    assert context.driver.find_element(By.XPATH, "//p[contains(text(),'Please submit the form below to purchase the fligh')]")
+    assert context.driver.find_element(By.XPATH, "//p[contains(text(),'Please submit the form below "
+                                                 "to purchase the fligh')]")
     print('Passo 6 - Foi direcionado para a página de pagamento')
 
 @when(u'preencho os dados para pagamento')
@@ -77,7 +78,8 @@ def step_impl(context):
 
 @when(u'clico no botao "Purchase Flight"')
 def step_impl(context):
-    context.driver.find_element(By.CSS_SELECTOR, 'body > div.container > form > div:nth-child(12) > div > input').click()
+    context.driver.find_element(By.CSS_SELECTOR, 'body > div.container > form > '
+                                                 'div:nth-child(12) > div > input').click()
     print('Passo 8 - Clicou no botão Purchase Flight')
 
 @then(u'sou direcionado a pagina de confirmacao')
