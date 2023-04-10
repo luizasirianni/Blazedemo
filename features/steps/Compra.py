@@ -20,7 +20,7 @@ def step_impl(context):
     context.driver.get('https://www.blazedemo.com/')
     print('Passo 1 - Acessou o site Blazedemo')
 
-@when(u'seleciono a cidade "Sao Paolo" na cidade de origem')
+@when(u'seleciono a cidade "São Paolo" na cidade de origem')
 def step_impl(context):
     #Mapear o dropdown (combo)
     dropdown_from = context.driver.find_element(By.NAME, 'fromPort')
@@ -42,10 +42,12 @@ def step_impl(context):
     context.driver.find_element(By.CSS_SELECTOR, 'body > div.container > form > div > input').click()
     print('Passo 4 - Apertou o botão Find Flights')
 
-@then(u'sou direcionado para a pagina de selecao de voos')
-def step_impl(context):
-    #assert context.driver.find_element(By.TAG_NAME, 'h3').text() == 'Flights from São Paolo to Rome: '
-    assert context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h3[1]').text == 'Flights from São Paolo to Rome:'
+@then(u'sou direcionado para a pagina de selecao de voos de "{origem}" para "{destino}"')
+def step_impl(context, origem, destino):
+    re = f'Flights from {origem} to {destino}'
+    print('Texto eh: ' + context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h3[1]').text)
+    assert context.driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/h3[1]').text == re
+
     print('Passo 5 - Foi direcionado para a página de seleção de voos')
 
 @when(u'seleciono o primeiro voo')

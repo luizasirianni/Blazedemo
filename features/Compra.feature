@@ -5,10 +5,10 @@ Feature: Compra de passagem aerea
   # para cada feature temos scenarios (test scenarios)
   Scenario: Trecho de Sao Paulo a Roma
     Given que acesso o site Blazedemo
-    When seleciono a cidade "Sao Paolo" na cidade de origem
+    When seleciono a cidade "São Paolo" na cidade de origem
     And seleciono a cidade "Rome" na cidade de destino
     And clico no botao "Find Flights"
-    Then sou direcionado para a pagina de selecao de voos
+    Then sou direcionado para a pagina de selecao de voos de "<origem>" para "<destino>"
     When seleciono o primeiro voo
     Then sou direcionado para a pagina de pagamento
     When preencho os dados para pagamento
@@ -17,8 +17,8 @@ Feature: Compra de passagem aerea
 
   Scenario: Trecho de Sao Paulo a Roma Compacto
     Given que acesso o site Blazedemo
-    When seleciono de "Sao Paolo" para "Rome"
-    Then sou direcionado para a pagina de selecao de voos
+    When seleciono de "São Paolo" para "Rome"
+    Then sou direcionado para a pagina de selecao de voos de "<origem>" para "<destino>"
     When seleciono o primeiro voo
     Then sou direcionado para a pagina de pagamento
     When preencho os dados para pagamento
@@ -28,7 +28,7 @@ Feature: Compra de passagem aerea
   Scenario Outline: De origem a destino
     Given que acesso o site Blazedemo
     When seleciono de "<origem>" para "<destino>"
-    Then sou direcionado para a pagina de selecao de voos
+    Then sou direcionado para a pagina de selecao de voos de "<origem>" para "<destino>"
     When seleciono o primeiro voo
     Then sou direcionado para a pagina de pagamento
     When preencho os dados para pagamento
