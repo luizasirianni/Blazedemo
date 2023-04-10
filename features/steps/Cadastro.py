@@ -1,7 +1,7 @@
 from behave import given, when, then
 from selenium import *
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
+
 
 @when(u'clico em "Register"')
 def step_impl(context):
